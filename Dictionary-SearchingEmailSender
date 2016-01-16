@@ -1,0 +1,17 @@
+name = raw_input("Enter file:")
+if len(name) < 1 : name = "mbox-short.txt"
+handle = open(name)
+counts = dict()
+email = []
+for line in handle:					#build dic
+    if not line.startswith('From:'):       
+    	continue
+    words = line.split() 
+    email.append(words[1])
+    
+for user in email:        
+	counts[user]= counts.get(user,0)+1
+    
+for key,values in counts.items():	#looking for max value item and print
+    if values == max(counts.values()):
+       print key, values
